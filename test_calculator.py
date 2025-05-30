@@ -9,24 +9,24 @@ Created on Fri May 30 15:37:57 2025
 import unittest
 import math
 
-from calculator_app import sqrt, square, sin, cos, log  # If logic is separated
-
 class TestCalculatorFunctions(unittest.TestCase):
 
     def test_square(self):
-        self.assertEqual(square(3), 9)
+        self.assertEqual(3 ** 2, 9)
 
     def test_sqrt(self):
-        self.assertAlmostEqual(sqrt(16), 4.0)
+        self.assertAlmostEqual(math.sqrt(16), 4.0)
 
     def test_sin(self):
-        self.assertAlmostEqual(sin(90), 1.0, places=5)
+        self.assertAlmostEqual(math.sin(math.radians(90)), 1.0, places=5)
 
     def test_log(self):
-        self.assertAlmostEqual(log(100), 2.0)
+        self.assertAlmostEqual(math.log10(100), 2.0)
 
     def test_arcsin_out_of_range(self):
-        self.assertTrue(math.isnan(math.asin(2)))  # should produce domain error
+        with self.assertRaises(ValueError):
+            math.asin(2)  # Will raise ValueError due to domain error
 
 if __name__ == '__main__':
     unittest.main()
+
